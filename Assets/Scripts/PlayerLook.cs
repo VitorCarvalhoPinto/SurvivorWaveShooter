@@ -9,7 +9,7 @@ public class PlayerLook : MonoBehaviour
     private Vector2 zTilt;
 
     // Camera tilt
-    public float tiltAmount = 2f;
+    public float tiltAmount = 1.5f;
     public float tiltSpeed = 8f;
     private float currentTilt = 0f;
 
