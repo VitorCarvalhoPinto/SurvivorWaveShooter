@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Crouch variables
     private bool isCrouching = false;
-    private CapsuleCollider collider;
+    private CapsuleCollider capsuleCollider;
     private Vector3 colliderCenter;
 
     // Input system variables
@@ -39,8 +39,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerInput = new PlayerInput();
         mainCamera = Camera.main;
-        collider = GetComponent<CapsuleCollider>();
-        colliderCenter = collider.center; // Armazena o centro original do collider
+        capsuleCollider = GetComponent<CapsuleCollider>();
+        colliderCenter = capsuleCollider.center; // Armazena o centro original do capsuleCollider
     }
 
     void FixedUpdate()
@@ -84,20 +84,20 @@ public class PlayerMovement : MonoBehaviour
         if (!isCrouching)
         {
             Debug.Log("Crouch");
-            // diminuir moveSpeed, diminuir collider pela metade e reposicionar câmera
+            // diminuir moveSpeed, diminuir capsuleCollider pela metade e reposicionar câmera
             moveSpeed = crouchSpeed;
-            collider.height /= 2;
-            collider.center = new Vector3(collider.center.x, collider.center.y - collider.height / 2, collider.center.z);
+            capsuleCollider.height /= 2;
+            capsuleCollider.center = new Vector3(capsuleCollider.center.x, capsuleCollider.center.y - capsuleCollider.height / 2, capsuleCollider.center.z);
             isCrouching = true;
             Dive();
         }
         else
         {
             Debug.Log("Stand");
-            // restaurar moveSpeed, restaurar collider e reposicionar câmera
+            // restaurar moveSpeed, restaurar capsuleCollider e reposicionar câmera
             moveSpeed = normalSpeed;
-            collider.height *= 2;
-            collider.center = colliderCenter;
+            capsuleCollider.height *= 2;
+            capsuleCollider.center = colliderCenter;
             isCrouching = false;
         }
     }
@@ -116,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckGround()
     {
+        Debug.Log("Grounded");
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         // Encerra o dive assim que tocar o chão, devolvendo o controle ao MovePlayer
