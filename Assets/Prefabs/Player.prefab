@@ -131,7 +131,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2978969485103827510}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9ec510aca1ca4a84c95b31764cbbe2d1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -190,7 +190,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   moveSpeed: 5
+  normalSpeed: 5
+  sprintSpeed: 10
+  crouchSpeed: 2.5
   jumpForce: 5
+  diveForwardForce: 8
+  diveDownForce: 3
   groundCheck: {fileID: 8591591049032080973}
   groundDistance: 0.4
   groundMask:
@@ -211,6 +216,8 @@ MonoBehaviour:
   mouseSensitivity: 100
   cam: {fileID: 6655574448888097636}
   lookInput: {x: 0, y: 0}
+  tiltAmount: 2
+  tiltSpeed: 8
 --- !u!1 &5109211784876888576
 GameObject:
   m_ObjectHideFlags: 0

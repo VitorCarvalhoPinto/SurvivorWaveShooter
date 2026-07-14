@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckGround()
     {
-        Debug.Log("Grounded");
+        //Debug.Log("Grounded");
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         // Encerra o dive assim que tocar o chão, devolvendo o controle ao MovePlayer
