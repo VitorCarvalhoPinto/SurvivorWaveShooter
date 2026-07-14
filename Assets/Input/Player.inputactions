@@ -68,6 +68,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Inspect",
+                    "type": "Button",
+                    "id": "0a12f3bd-3978-4667-9236-f74e8bcf88a2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -249,17 +258,6 @@
                 },
                 {
                     "name": "",
-                    "id": "f3032009-16b2-4eaa-b58d-b1dc548cf361",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "56e23f02-1bf8-4a53-aace-cf5e2575be25",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
@@ -271,9 +269,20 @@
                 },
                 {
                     "name": "",
+                    "id": "f4b69e89-8ab4-41fc-8564-fc7c65cbe7fc",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "120ce710-62ad-42a6-8a9b-d13016a9fc62",
                     "path": "<Keyboard>/r",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Reload",
@@ -288,6 +297,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9502e3c5-a318-4cb8-9b77-21da00d4e592",
+                    "path": "<Keyboard>/f",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inspect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
