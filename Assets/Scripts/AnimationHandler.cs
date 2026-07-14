@@ -102,6 +102,7 @@ public class AnimationHandler : MonoBehaviour
     {
         // if (weapon.currentAmmo < 0 && !shootAction.action.IsPressed())
         // {
+        Debug.Log(context);
             TriggerAnimation(RELOAD);
         //     Debug.Log($"Bullets refilled to {weapon.magazineSize}.");
         // }
@@ -118,7 +119,8 @@ public class AnimationHandler : MonoBehaviour
     }
     private void TriggerAnimation(string triggerName)
     {
+        Debug.Log(triggerName);
         armAnimator?.SetTrigger(triggerName);
-        gunAnimator?.SetTrigger(triggerName);
+        // gunAnimator?.SetTrigger(triggerName);
     }
 }

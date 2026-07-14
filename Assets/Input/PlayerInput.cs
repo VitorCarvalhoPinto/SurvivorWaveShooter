@@ -157,9 +157,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Inspect"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""0a12f3bd-3978-4667-9236-f74e8bcf88a2"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
