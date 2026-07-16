@@ -163,6 +163,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ragdoll"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a455d7a-c90f-4d77-b5d5-268f6394f104"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -396,6 +405,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Inspect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""537ab229-355f-4677-920e-5952f915bf61"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ragdoll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -412,6 +432,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         m_Player_Inspect = m_Player.FindAction("Inspect", throwIfNotFound: true);
+        m_Player_Ragdoll = m_Player.FindAction("Ragdoll", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -500,6 +521,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Reload;
     private readonly InputAction m_Player_Inspect;
+    private readonly InputAction m_Player_Ragdoll;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -543,6 +565,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Inspect".
         /// </summary>
         public InputAction @Inspect => m_Wrapper.m_Player_Inspect;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Ragdoll".
+        /// </summary>
+        public InputAction @Ragdoll => m_Wrapper.m_Player_Ragdoll;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -593,6 +619,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Inspect.started += instance.OnInspect;
             @Inspect.performed += instance.OnInspect;
             @Inspect.canceled += instance.OnInspect;
+            @Ragdoll.started += instance.OnRagdoll;
+            @Ragdoll.performed += instance.OnRagdoll;
+            @Ragdoll.canceled += instance.OnRagdoll;
         }
 
         /// <summary>
@@ -628,6 +657,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Inspect.started -= instance.OnInspect;
             @Inspect.performed -= instance.OnInspect;
             @Inspect.canceled -= instance.OnInspect;
+            @Ragdoll.started -= instance.OnRagdoll;
+            @Ragdoll.performed -= instance.OnRagdoll;
+            @Ragdoll.canceled -= instance.OnRagdoll;
         }
 
         /// <summary>
@@ -724,5 +756,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInspect(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Ragdoll" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRagdoll(InputAction.CallbackContext context);
     }
 }
