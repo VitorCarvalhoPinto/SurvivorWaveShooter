@@ -1,49 +1,28 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class RagdollController : MonoBehaviour
+public class RagdollHandler : MonoBehaviour
 {
     [SerializeField] private Animator animator;
+    [SerializeField] private Collider mainCollider; // Adicionado SerializeField aqui!
 
     private Rigidbody[] ragdollRigidbodies;
-
-    private PlayerInput input;
-
     public bool isRagdoll;
 
     private void Awake()
     {
-        input = new PlayerInput();
-
         ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
-
         DisableRagdoll();
     }
-
-    // private void OnEnable()
-    // {
-    //     input.Enable();
-    //     input.Player.Ragdoll.performed += OnRagdoll;
-    // }
-
-    // private void OnDisable()
-    // {
-    //     input.Player.Ragdoll.performed -= OnRagdoll;
-    //     input.Disable();
-    // }
-
-    // private void OnRagdoll(InputAction.CallbackContext context)
-    // {
-    //     if (isRagdoll)
-    //         DisableRagdoll();
-    //     else
-    //         EnableRagdoll();
-    // }
 
     public void EnableRagdoll()
     {
         isRagdoll = true;
         animator.enabled = false;
+
+        if (mainCollider != null)
+        {
+            mainCollider.enabled = false;
+        }
 
         foreach (Rigidbody rb in ragdollRigidbodies)
         {
@@ -55,6 +34,11 @@ public class RagdollController : MonoBehaviour
     {
         isRagdoll = false;
         animator.enabled = true;
+
+        if (mainCollider != null)
+        {
+            mainCollider.enabled = true;
+        }
 
         foreach (Rigidbody rb in ragdollRigidbodies)
         {

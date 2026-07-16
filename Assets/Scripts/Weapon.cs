@@ -19,12 +19,10 @@ public class Weapon : MonoBehaviour
     public float impulseForce;
     private float rayCastLength = 30f;
 
-    RagdollController ragdollController;
     void Start()
     {
         currentAmmo = magazineSize;
         playerCamera = Camera.main;
-        ragdollController = GetComponent<RagdollController>();
     }
     public void Fire()
     {
@@ -41,10 +39,10 @@ public class Weapon : MonoBehaviour
             {
                 Debug.Log("Hit: " + hit.collider.name);
 
-                RagdollController ragdoll = hit.collider.GetComponentInParent<RagdollController>();
+                EnemyBehaviour enemy = hit.collider.GetComponentInParent<EnemyBehaviour>();
 
-                if (ragdoll != null)
-                    ragdoll.EnableRagdoll();
+                if (enemy != null)
+                    enemy?.Die();
 
                 hit.collider.attachedRigidbody?.AddForce(
                     playerCamera.transform.forward * impulseForce,
