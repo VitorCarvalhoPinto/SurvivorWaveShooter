@@ -1,10 +1,13 @@
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 // using UnityEngine.
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] private EnemyHealth enemyHealth;
+
     public string weaponName;
     public float damage;
     public float reloadTime;
@@ -15,6 +18,8 @@ public class Weapon : MonoBehaviour
     public int currentAmmo;
     public Camera playerCamera;
     private bool isReloading = false;
+
+    public LayerMask hitboxLayer;
 
     public float impulseForce;
     private float rayCastLength = 30f;
@@ -31,18 +36,27 @@ public class Weapon : MonoBehaviour
             nextFireTime = Time.time + fireRate;
             RaycastHit hit;
             currentAmmo--;
-            Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, rayCastLength);
-            
+            // Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, rayCastLength);
+            Physics.Raycast(
+                playerCamera.transform.position,
+                playerCamera.transform.forward,
+                out hit,
+                rayCastLength,
+                hitboxLayer
+            );
             Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.forward * rayCastLength, Color.red, 1f);
-            
+
             if (hit.collider)
             {
-                Debug.Log("Hit: " + hit.collider.name);
 
-                EnemyBehaviour enemy = hit.collider.GetComponentInParent<EnemyBehaviour>();
+                EnemyHitbox enemyHitbox = hit.collider.GetComponent<EnemyHitbox>();
 
-                if (enemy != null)
-                    enemy?.Die();
+                Debug.Log($"Collider atingido: {hit.collider.name} | Vida: {enemyHealth.currentHealth}");
+
+                if (enemyHitbox != null)
+                {
+                    enemyHitbox.TakeDamage(damage);
+                }
 
                 hit.collider.attachedRigidbody?.AddForce(
                     playerCamera.transform.forward * impulseForce,
@@ -51,7 +65,6 @@ public class Weapon : MonoBehaviour
             Debug.Log(currentAmmo);
         }
         else if (currentAmmo <= 0 && !isReloading) StartCoroutine(Reload());
-
     }
 
     public IEnumerator Reload()
