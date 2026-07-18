@@ -209,7 +209,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   bodyPart: 3
-  enemyHealth: {fileID: 8823131745249510539}
 --- !u!1 &500252485415067042
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +384,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   bodyPart: 1
-  enemyHealth: {fileID: 8823131745249510539}
 --- !u!1 &896649837091893692
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,7 +430,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   bodyPart: 2
-  enemyHealth: {fileID: 8823131745249510539}
 --- !u!1 &1150180416339578366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,7 +1010,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2431146495098971254}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 0ac55ada2b4e42046a1ed6179ec1f624, type: 2}
   m_CullingMode: 0
@@ -1116,7 +1113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c54c25d1daf8d24cb91f2616f24e8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthBar
-  enemyBehaviour: {fileID: 4474688160835415673}
   maxHealth: 100
   currentHealth: 0
 --- !u!1 &2438056600616688082
@@ -1167,7 +1163,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   bodyPart: 1
-  enemyHealth: {fileID: 8823131745249510539}
 --- !u!1 &2497550935028915076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,7 +1572,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   bodyPart: 0
-  enemyHealth: {fileID: 8823131745249510539}
 --- !u!1 &3936463132367140266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,7 +1958,7 @@ Transform:
   m_LocalRotation: {x: 0.05029703, y: -1.5482392e-10, z: 0.0000000030752123, w: 0.9987343}
   m_LocalPosition: {x: -1.209416e-15, y: 0.07395473, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7162283653758411331}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1987,7 +1981,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.09522563
+  m_Radius: 0.13
   m_Center: {x: 0, y: 0.09522563, z: 0}
 --- !u!54 &1172380809864262643
 Rigidbody:
@@ -2075,7 +2069,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   bodyPart: 0
-  enemyHealth: {fileID: 8823131745249510539}
 --- !u!1 &5931823152119389010
 GameObject:
   m_ObjectHideFlags: 0
@@ -2218,7 +2211,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   bodyPart: 2
-  enemyHealth: {fileID: 8823131745249510539}
 --- !u!1 &6983135587016135096
 GameObject:
   m_ObjectHideFlags: 0
@@ -2526,7 +2518,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   bodyPart: 3
-  enemyHealth: {fileID: 8823131745249510539}
 --- !u!1 &7451590818432009473
 GameObject:
   m_ObjectHideFlags: 0

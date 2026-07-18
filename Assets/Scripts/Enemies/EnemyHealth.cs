@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private EnemyBehaviour enemyBehaviour;
-
-    RaycastHit hit;
+    private EnemyBehaviour enemyBehaviour;
     public float maxHealth = 100f;
     public float currentHealth;
 
-
-    void Start()
+    private void Awake()
     {
+        enemyBehaviour = GetComponent<EnemyBehaviour>();
         currentHealth = maxHealth;
     }
 
@@ -22,8 +20,7 @@ public class EnemyHealth : MonoBehaviour
         {
             currentHealth = 0;
             enemyBehaviour.Die();
+            GameManager.Instance.AddKill();
         }
     }
-
-
 }

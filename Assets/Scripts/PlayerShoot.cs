@@ -30,4 +30,9 @@ public class PlayerShoot : MonoBehaviour
     { 
         StartCoroutine(currentWeapon.Reload());
     }
+
+    public Weapon GetCurrentWeapon()
+    {
+        return currentWeapon;
+    }
 }

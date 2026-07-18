@@ -7,6 +7,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] private EnemyHealth enemyHealth;
+    [SerializeField] private Transform bulletPoint;
 
     public string weaponName;
     public float damage;
@@ -31,27 +32,22 @@ public class Weapon : MonoBehaviour
     }
     public void Fire()
     {
-        if (currentAmmo > 0 && Time.time >= nextFireTime && !isReloading)
+        if (currentAmmo > 0 && Time.time >= nextFireTime)
         {
             nextFireTime = Time.time + fireRate;
-            RaycastHit hit;
             currentAmmo--;
-            // Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, rayCastLength);
-            Physics.Raycast(
-                playerCamera.transform.position,
-                playerCamera.transform.forward,
-                out hit,
-                rayCastLength,
-                hitboxLayer
-            );
-            Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.forward * rayCastLength, Color.red, 1f);
 
-            if (hit.collider)
+            RaycastHit hit;
+
+            // Raycast sai da câmera
+            Vector3 rayOrigin = playerCamera.transform.position;
+            Vector3 rayDirection = playerCamera.transform.forward;
+
+            if (Physics.Raycast(rayOrigin, rayDirection, out hit, rayCastLength, hitboxLayer))
             {
+                Debug.Log($"Collider atingido: {hit.collider.name}");
 
                 EnemyHitbox enemyHitbox = hit.collider.GetComponent<EnemyHitbox>();
-
-                Debug.Log($"Collider atingido: {hit.collider.name} | Vida: {enemyHealth.currentHealth}");
 
                 if (enemyHitbox != null)
                 {
@@ -59,12 +55,22 @@ public class Weapon : MonoBehaviour
                 }
 
                 hit.collider.attachedRigidbody?.AddForce(
-                    playerCamera.transform.forward * impulseForce,
+                    rayDirection * impulseForce,
                     ForceMode.Impulse);
+
+                // Linha vermelha da ponta do cano até o alvo atingido
+                Debug.DrawLine(
+                    bulletPoint.position,
+                    hit.point,
+                    Color.red,
+                    1f);
             }
             Debug.Log(currentAmmo);
         }
-        else if (currentAmmo <= 0 && !isReloading) StartCoroutine(Reload());
+        else if (currentAmmo <= 0 && !isReloading)
+        {
+            StartCoroutine(Reload());
+        }
     }
 
     public IEnumerator Reload()
