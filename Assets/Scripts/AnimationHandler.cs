@@ -14,20 +14,27 @@ public class AnimationHandler : MonoBehaviour
     private const string DRAW = "triggerDraw";
     private const string HOLSTER = "triggerHolster";
 
-    private void Awake()
+    public void SetWeapon(Weapon weapon)
     {
-
+        currentWeapon = weapon;
     }
 
     public void OnInspect(InputValue value) => TriggerAnimation(INSPECT);
     public void OnFire(InputValue value)
     {
-        TriggerAnimation(SHOOT);
+        if (value.isPressed && currentWeapon != null && !currentWeapon.isReloading && currentWeapon.currentAmmo > 0)
+            TriggerAnimation(SHOOT);
     }
 
     public void OnReload(InputValue value)
     {
         if (value.isPressed)
+            TriggerReloadAnimation();
+    }
+
+    public void TriggerReloadAnimation()
+    {
+        if (currentWeapon != null && !currentWeapon.isReloading)
             TriggerAnimation(RELOAD);
     }
 

@@ -209,6 +209,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   bodyPart: 3
+  damageTorso: 1
+  damageNeck: 1.8
+  damageArm: 0.75
+  damageLeg: 0.6
 --- !u!1 &500252485415067042
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +388,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   bodyPart: 1
+  damageTorso: 1
+  damageNeck: 1.8
+  damageArm: 0.75
+  damageLeg: 0.6
 --- !u!1 &896649837091893692
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,6 +438,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   bodyPart: 2
+  damageTorso: 1
+  damageNeck: 1.8
+  damageArm: 0.75
+  damageLeg: 0.6
 --- !u!1 &1150180416339578366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,7 +1089,9 @@ MonoBehaviour:
   detectionRange: 100
   viewAngle: 90
   losePlayerTime: 10
-  attackRange: 3
+  attackRange: 2.5
+  sensorInterval: 0.15
+  destinationInterval: 0.2
 --- !u!136 &5018728929664156459
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1163,6 +1177,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   bodyPart: 1
+  damageTorso: 1
+  damageNeck: 1.8
+  damageArm: 0.75
+  damageLeg: 0.6
 --- !u!1 &2497550935028915076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,6 +1554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7162283653758411331}
   - component: {fileID: 5827038057517104100}
+  - component: {fileID: 6027645586200269442}
   m_Layer: 7
   m_Name: neck
   m_TagString: Untagged
@@ -1572,6 +1591,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   bodyPart: 0
+  damageTorso: 1
+  damageNeck: 1.8
+  damageArm: 0.75
+  damageLeg: 0.6
+--- !u!114 &6027645586200269442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3689327014889534849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648fcd57206c0e549ade053234a30f17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
+  bodyPart: 1
+  damageTorso: 1
+  damageNeck: 1.8
+  damageArm: 0.75
+  damageLeg: 0.6
 --- !u!1 &3936463132367140266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,6 +1944,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6216708172285275730}
+  - component: {fileID: 4122299924610912926}
   m_Layer: 0
   m_Name: Armature
   m_TagString: Untagged
@@ -1927,6 +1968,64 @@ Transform:
   - {fileID: 2084237112128861584}
   m_Father: {fileID: 3095937186629893836}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4122299924610912926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537709518510859288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Animation.Rigging::UnityEngine.Animations.Rigging.BoneRenderer
+  boneShape: 1
+  drawBones: 1
+  drawTripods: 0
+  boneSize: 1
+  tripodSize: 1
+  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
+  m_Transforms:
+  - {fileID: 192261791108151704}
+  - {fileID: 4089671002660435880}
+  - {fileID: 4715132083096914364}
+  - {fileID: 5251603047024947589}
+  - {fileID: 8361983450722066161}
+  - {fileID: 7347691040680206391}
+  - {fileID: 851387666746418976}
+  - {fileID: 408084396269209454}
+  - {fileID: 2515997928569713912}
+  - {fileID: 3520097503958267704}
+  - {fileID: 4961418573728633488}
+  - {fileID: 5451263840605517374}
+  - {fileID: 4137348926835887004}
+  - {fileID: 3996501687407275586}
+  - {fileID: 1098255444598817064}
+  - {fileID: 1571877968408851993}
+  - {fileID: 713256536523375608}
+  - {fileID: 880037840024258788}
+  - {fileID: 6125064764343643494}
+  - {fileID: 3987446253606087745}
+  - {fileID: 573116074300981394}
+  - {fileID: 8887524860305639488}
+  - {fileID: 6853523797715555326}
+  - {fileID: 2743610105464418655}
+  - {fileID: 4993119152117234446}
+  - {fileID: 4093705841805791570}
+  - {fileID: 2165644850478681504}
+  - {fileID: 1265921129158141256}
+  - {fileID: 7292219050709718663}
+  - {fileID: 7162283653758411331}
+  - {fileID: 3034925775218272978}
+  - {fileID: 8119909022671558864}
+  - {fileID: 6171740124880067141}
+  - {fileID: 3716994112246330865}
+  - {fileID: 5777732226431394720}
+  - {fileID: 4375428057401891901}
+  - {fileID: 7394837471739132606}
+  - {fileID: 4385711588224704196}
+  - {fileID: 1452651407257147007}
 --- !u!1 &5820538647888503686
 GameObject:
   m_ObjectHideFlags: 0
@@ -2069,6 +2168,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   bodyPart: 0
+  damageTorso: 1
+  damageNeck: 1.8
+  damageArm: 0.75
+  damageLeg: 0.6
 --- !u!1 &5931823152119389010
 GameObject:
   m_ObjectHideFlags: 0
@@ -2211,6 +2314,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   bodyPart: 2
+  damageTorso: 1
+  damageNeck: 1.8
+  damageArm: 0.75
+  damageLeg: 0.6
 --- !u!1 &6983135587016135096
 GameObject:
   m_ObjectHideFlags: 0
@@ -2518,6 +2625,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   bodyPart: 3
+  damageTorso: 1
+  damageNeck: 1.8
+  damageArm: 0.75
+  damageLeg: 0.6
 --- !u!1 &7451590818432009473
 GameObject:
   m_ObjectHideFlags: 0

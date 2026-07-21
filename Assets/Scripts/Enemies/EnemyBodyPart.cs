@@ -1,6 +1,7 @@
-public enum BodyPart
+public enum EnemyBodyPart
 {
     Head,
+    Neck,
     Torso,
     Arm,
     Leg

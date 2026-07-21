@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class EnemyHitbox : MonoBehaviour
 {
-    [SerializeField] private BodyPart bodyPart;
+    [SerializeField] private EnemyBodyPart bodyPart;
     private EnemyHealth enemyHealth;
 
-    private float damageTorso = 1f;
-    private float damageArm = 0.75f;
-    private float damageLeg = 0.6f;
+    [SerializeField] private float damageTorso = 1f;
+    [SerializeField] private float damageNeck = 1.8f;
+    [SerializeField] private float damageArm = 0.75f;
+    [SerializeField] private float damageLeg = 0.6f;
 
     void Awake()
     {
@@ -20,19 +21,23 @@ public class EnemyHitbox : MonoBehaviour
 
         switch (bodyPart)
         {
-            case BodyPart.Head:
+            case EnemyBodyPart.Head:
                 finalDamage = enemyHealth.currentHealth;
                 break;
 
-            case BodyPart.Torso:
+            case EnemyBodyPart.Neck:
+                finalDamage *= damageNeck;
+                break;
+
+            case EnemyBodyPart.Torso:
                 finalDamage *= damageTorso;
                 break;
 
-            case BodyPart.Arm:
+            case EnemyBodyPart.Arm:
                 finalDamage *= damageArm;
                 break;
 
-            case BodyPart.Leg:
+            case EnemyBodyPart.Leg:
                 finalDamage *= damageLeg;
                 break;
         }

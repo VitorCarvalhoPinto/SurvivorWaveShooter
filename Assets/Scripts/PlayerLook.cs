@@ -4,7 +4,7 @@ public class PlayerLook : MonoBehaviour
 {
     public float mouseSensitivity = 100f;
     public Transform cam;
-    public Vector2 lookInput;
+    private Vector2 lookInput;
     private float xRotation = 0f;
     private Vector2 zTilt;
 

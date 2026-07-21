@@ -1,0 +1,53 @@
+using UnityEngine;
+using System;
+using System.Collections.Generic;
+using UnityEngine.InputSystem;
+
+public abstract class StateManager<EState> : MonoBehaviour where EState : Enum
+{
+
+    protected Dictionary<EState, BaseState<EState>> States = new Dictionary<EState, BaseState<EState>>();
+    protected BaseState<EState> currentState;
+    protected bool isTransitioningState = false;
+
+    void Start()
+    {
+        currentState.EnterState();
+    }
+
+    void Update()
+    {
+        EState nextStateKey = currentState.GetNextState();
+
+        if (!isTransitioningState && nextStateKey.Equals(currentState.StateKey))
+        {
+            currentState.UpdateState();
+        }
+        else if (!isTransitioningState)
+        {
+            TransitionToState(nextStateKey);
+        }
+    }
+
+    public void TransitionToState(EState stateKey)
+    {
+        isTransitioningState = true;
+        currentState.ExitState();
+        currentState = States[stateKey];
+        currentState.EnterState();
+        isTransitioningState = false;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        currentState.OnTriggerEnter(other);
+    }
+    void OnTriggerStay(Collider other)
+    {
+        currentState.OnTriggerStay(other);
+    }
+    void OnTriggerExit(Collider other)
+    {
+        currentState.OnTriggerExit(other);
+    }
+}

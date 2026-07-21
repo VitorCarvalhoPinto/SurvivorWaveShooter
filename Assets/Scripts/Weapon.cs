@@ -1,12 +1,8 @@
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
-// using UnityEngine.
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private EnemyHealth enemyHealth;
     [SerializeField] private Transform bulletPoint;
 
     public string weaponName;
@@ -18,7 +14,7 @@ public class Weapon : MonoBehaviour
     public int magazineSize;
     public int currentAmmo;
     public Camera playerCamera;
-    private bool isReloading = false;
+    public bool isReloading = false;
 
     public LayerMask hitboxLayer;
 
@@ -32,51 +28,37 @@ public class Weapon : MonoBehaviour
     }
     public void Fire()
     {
+        if (isReloading)
+            return;
+
         if (currentAmmo > 0 && Time.time >= nextFireTime)
         {
             nextFireTime = Time.time + fireRate;
             currentAmmo--;
 
-            RaycastHit hit;
-
-            // Raycast sai da câmera
             Vector3 rayOrigin = playerCamera.transform.position;
             Vector3 rayDirection = playerCamera.transform.forward;
 
-            if (Physics.Raycast(rayOrigin, rayDirection, out hit, rayCastLength, hitboxLayer))
+            if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, rayCastLength, hitboxLayer))
             {
-                Debug.Log($"Collider atingido: {hit.collider.name}");
-
                 EnemyHitbox enemyHitbox = hit.collider.GetComponent<EnemyHitbox>();
 
                 if (enemyHitbox != null)
-                {
                     enemyHitbox.TakeDamage(damage);
-                }
 
-                hit.collider.attachedRigidbody?.AddForce(
-                    rayDirection * impulseForce,
-                    ForceMode.Impulse);
+                hit.collider.attachedRigidbody?.AddForce(rayDirection * impulseForce, ForceMode.Impulse);
 
-                // Linha vermelha da ponta do cano até o alvo atingido
-                Debug.DrawLine(
-                    bulletPoint.position,
-                    hit.point,
-                    Color.red,
-                    1f);
+                Debug.DrawLine(bulletPoint.position, hit.point, Color.red, 1f);
             }
-            Debug.Log(currentAmmo);
-        }
-        else if (currentAmmo <= 0 && !isReloading)
-        {
-            StartCoroutine(Reload());
         }
     }
 
     public IEnumerator Reload()
     {
+        if (isReloading)
+            yield break;
+
         isReloading = true;
-        Debug.Log("Reloading...");
         yield return new WaitForSeconds(reloadTime);
         currentAmmo = magazineSize;
         isReloading = false;

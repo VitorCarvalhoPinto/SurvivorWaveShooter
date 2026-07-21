@@ -19,8 +19,8 @@ public class EnemyHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            enemyBehaviour.Die();
             GameManager.Instance.AddKill();
+            enemyBehaviour.Die();
         }
     }
 }

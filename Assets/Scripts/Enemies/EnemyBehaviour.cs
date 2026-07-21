@@ -25,12 +25,21 @@ public class EnemyBehaviour : MonoBehaviour
     [Header("Combat")]
     [SerializeField] private float attackRange = 3f;
 
+    [Header("Performance")]
+    [SerializeField] private float sensorInterval = 0.15f;
+    [SerializeField] private float destinationInterval = 0.2f;
+
     private float timeSinceLostSeenPlayer;
+    private float sensorTimer;
+    private float destinationTimer;
+    private bool cachedHasClearPath = true;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        sensorTimer = Random.Range(0f, sensorInterval);
+        destinationTimer = Random.Range(0f, destinationInterval);
     }
 
     private void Start()
@@ -45,11 +54,16 @@ public class EnemyBehaviour : MonoBehaviour
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
+        sensorTimer += Time.deltaTime;
+        bool shouldSense = sensorTimer >= sensorInterval;
+        if (shouldSense)
+            sensorTimer = 0f;
+
         switch (state)
         {
             case EnemyState.Idle:
 
-                if (distanceToPlayer <= detectionRange && CanSeePlayer())
+                if (shouldSense && distanceToPlayer <= detectionRange && CanSeePlayer())
                 {
                     ChangeState(EnemyState.Chase);
                 }
@@ -63,8 +77,13 @@ public class EnemyBehaviour : MonoBehaviour
                 if (distanceToPlayer <= attackRange)
                 {
                     ChangeState(EnemyState.Attack);
+                    break;
                 }
-                else if (distanceToPlayer > detectionRange || !HasClearPathToPlayer())
+
+                if (shouldSense)
+                    cachedHasClearPath = HasClearPathToPlayer();
+
+                if (distanceToPlayer > detectionRange || !cachedHasClearPath)
                 {
                     timeSinceLostSeenPlayer += Time.deltaTime;
 
@@ -99,6 +118,11 @@ public class EnemyBehaviour : MonoBehaviour
         if (agent.isStopped)
             agent.isStopped = false;
 
+        destinationTimer += Time.deltaTime;
+        if (destinationTimer < destinationInterval)
+            return;
+
+        destinationTimer = 0f;
         agent.SetDestination(player.position);
     }
 
@@ -158,6 +182,9 @@ public class EnemyBehaviour : MonoBehaviour
                 break;
 
             case EnemyState.Chase:
+
+                timeSinceLostSeenPlayer = 0f;
+                cachedHasClearPath = true;
 
                 if (agent != null && agent.enabled)
                 {

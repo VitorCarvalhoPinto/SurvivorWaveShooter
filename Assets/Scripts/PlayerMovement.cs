@@ -27,18 +27,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 colliderCenter;
 
     // Input system variables
-    private PlayerInput playerInput;
     private Rigidbody rb;
     private Vector2 movementInput;
     private bool isSprinting;
-    private Camera mainCamera;
-    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        playerInput = new PlayerInput();
-        mainCamera = Camera.main;
         capsuleCollider = GetComponent<CapsuleCollider>();
         colliderCenter = capsuleCollider.center; // Armazena o centro original do capsuleCollider
     }
@@ -116,7 +111,6 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckGround()
     {
-        //Debug.Log("Grounded");
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         // Encerra o dive assim que tocar o chão, devolvendo o controle ao MovePlayer
